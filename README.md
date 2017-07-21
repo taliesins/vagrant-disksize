@@ -1,7 +1,9 @@
 # vagrant-disksize
 
-A Vagrant plugin to resize disks in VirtualBox
+A Vagrant plugin to resize disks before bootup.
 
+Current providers supported:
+* VirtualBox
 
 ## Installation
 
@@ -15,9 +17,15 @@ vagrant plugin install vagrant-disksize
 Set the size you want for your disk in your Vagrantfile. For example
 
 ```ruby
-Vagrant.configure('2') do |config|
-  config.vm.box = 'ubuntu/xenial64'
-  config.disksize.size = '50GB'
+Vagrant.configure(2) do |config|
+  config.vm.define 'webserver' do |www|
+    www.vm.hostname = "www"
+    www.disksize.size = '10GB'
+  end
+  config.vm.define 'databaseserver' do |db|
+    db.vm.hostname = "www"
+    db.disksize.size = '50GB'
+  end  
 end
 ```
 

@@ -1,4 +1,4 @@
-module Vagrant
+module VagrantPlugins
   module Disksize
     class Config < Vagrant.plugin('2', :config)
       attr_accessor :size
@@ -6,10 +6,12 @@ module Vagrant
       SIZE_REGEX = /^(?<number>[0-9]+)\s?(?<scale>KB|MB|GB|TB)?$/
 
       def initialize
+        super
         @size = UNSET_VALUE
       end
 
       def finalize!
+        super
         if @size == UNSET_VALUE
           @size = nil
         else
@@ -35,13 +37,12 @@ module Vagrant
       def validate(machine)
         errors = _detected_errors
 
-        unless @size.nil? || @size.is_a?(Integer)
+        if machine.config.disksize.size.nil? || machine.config.disksize.size.is_a?(Integer)
           errors << "'#{@size}' is not a valid specification of disk size"
         end
 
         return { 'Disksize configuration' => errors }
       end
-
     end
   end
 end

@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vagrant/disksize/version'
+require 'vagrant-disksize/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-disksize"
-  spec.version       = Vagrant::Disksize::VERSION
+  spec.version       = VagrantPlugins::Disksize::VERSION
   spec.authors       = ["Simon Protheroe"]
   spec.email         = ["protheroe@gmail.com"]
 
-  spec.summary       = %q{Vagrant plugin to resize VirtualBox disks}
-  spec.description   = %q{Vagrant plugin to resize VirtualBox disks at creation time}
+  spec.summary       = %q{Vagrant plugin to resize hypervisor disks}
+  spec.description   = %q{Vagrant plugin to resize hypervisor disks at creation time}
   spec.homepage      = "https://github.com/sprotheroe/vagrant-disksize"
   spec.license       = "MIT"
 
